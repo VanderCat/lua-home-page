@@ -72,10 +72,14 @@ function handler.getEnv()
 end
 
 function handler.printError(error)
-    if Headers["Content-Type"] == "text/html" then buffer = buffer.."<pre>" end
+    local isHtml = true;
+    if Headers["Content-Type"] then
+        isHtml = Headers["Content-Type"] == "text/html"
+    end
+    if isHtml then buffer = buffer.."<pre>" end
     buffer = buffer.."Error loading Lua code: "
     buffer = buffer..tostring(error)
-    if Headers["Content-Type"] == "text/html" then buffer = buffer.."</pre>" end
+    if isHtml then buffer = buffer.."</pre>" end
 end
 
 function handler:execute(code, env, name)
