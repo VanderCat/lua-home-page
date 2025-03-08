@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>lua Test</title>
+    </head>
+    <body>
+        <?lua print '<p>Hello World</p>' ?>
+        <ul>
+            <?lua
+                for i = 1, 10, 1 do
+                    print("<li>"..i..". i made lua like php</li>")
+                end
+            ?>
+        </ul>
+        <?lua 
+        globals.requestNumber = (globals.requestNumber or 0) + 1
+        
+        print("request number "..requestNumber2)
+        ?>
+        <?lua
+            embed "lhp.embedded"
+        ?>
+    </body>
+</html>

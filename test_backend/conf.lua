@@ -1,0 +1,1 @@
+settings.socket = ":7777"
