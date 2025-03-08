@@ -71,17 +71,24 @@ function handler.getEnv()
     return env
 end
 
+function handler.printError(error)
+    if Headers["Content-Type"] == "text/html" then buffer = buffer.."<pre>" end
+    buffer = buffer.."Error loading Lua code: "
+    buffer = buffer..tostring(error)
+    if Headers["Content-Type"] == "text/html" then buffer = buffer.."</pre>" end
+end
+
 function handler:execute(code, env, name)
     buffer = ""
     
     local chunk, err = load(code, name, "t", env)
     if not chunk then
-        buffer = buffer.."Error loading Lua code: " .. tostring(err)
+        handler.printError(err)
     end
     
     local success, err_msg = pcall(chunk or function() end)
     if not success then
-        buffer = buffer.."Error loading Lua code: " .. tostring(err_msg)
+        handler.printError(err)
     end
     
     return buffer
