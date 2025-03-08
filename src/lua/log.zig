@@ -34,7 +34,7 @@ fn logDebug(lua: *ziglua.Lua) i32 {
     const str = lua.toString(1) catch {
         return lua.raiseErrorStr("could not convert to string", .{});
     };
-    luaLogger.err("{s}", .{str});
+    luaLogger.debug("{s}", .{str});
     return 0;
 }
 
@@ -42,7 +42,7 @@ fn logWarn(lua: *ziglua.Lua) i32 {
     const str = lua.toString(1) catch {
         return lua.raiseErrorStr("could not convert to string", .{});
     };
-    luaLogger.err("{s}", .{str});
+    luaLogger.warn("{s}", .{str});
     return 0;
 }
 
@@ -50,6 +50,6 @@ fn logInfo(lua: *ziglua.Lua) i32 {
     const str = lua.toString(1) catch {
         return lua.raiseErrorStr("could not convert to string", .{});
     };
-    luaLogger.err("{s}", .{str});
+    luaLogger.info("{s}", .{str});
     return 0;
 }
