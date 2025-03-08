@@ -11,7 +11,7 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    const ziglua = b.dependency("ziglua", .{ .target = target, .optimize = optimize, .lang = .lua54 });
+    const ziglua = b.dependency("ziglua", .{ .target = target, .optimize = optimize, .lang = .lua54, .shared = true });
 
     exe.root_module.addImport("ziglua", ziglua.module("ziglua"));
 
