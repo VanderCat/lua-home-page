@@ -92,7 +92,7 @@ function handler:execute(code, env, name)
     
     local success, err_msg = pcall(chunk or function() end)
     if not success then
-        handler.printError(err)
+        handler.printError(err_msg)
     end
     
     return buffer
